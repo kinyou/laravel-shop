@@ -18,4 +18,13 @@ Route::group([
     $router->get('equipments/{id}/edit', 'EquipmentController@edit')->name('admin.equipment.edit');
     $router->delete('equipments/{id}', 'EquipmentController@destroy')->name('admin.equipment.destroy');
 
+    $router->get('faults', 'FaultController@index')->name('admin.fault.index');
+    $router->get('faults/create', 'FaultController@create')->name('admin.fault.create');
+    $router->post('faults', 'FaultController@store')->name('admin.fault.store');
+    $router->get('faults/{id}', 'FaultController@show')->name('admin.fault.show');
+    $router->get('faults/{id}/edit', 'FaultController@edit')->name('admin.fault.edit');
+    $router->delete('faults/{id}', 'FaultController@destroy')->name('admin.fault.destroy');
+    
+    $router->get('analyses', 'AnalyseController@index')->name('admin.analyse.index');
+    $router->get('logs', 'LogController@index')->name('admin.log.index');
 });
