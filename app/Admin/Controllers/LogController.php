@@ -83,9 +83,25 @@ class LogController extends Controller
         $grid->id('Id');
         $grid->name('设备名称');
         $grid->ip('Ip');
-        $grid->status('状态');
-        $grid->cpu('CPU');
-        $grid->mem('内存');
+        $grid->status('状态')->display(function($status){
+            return $status == 1 ? 
+            "<button type='button' class='btn btn-xs btn-success'>正常</button>" 
+            : "<button type='button' class='btn btn-xs btn-danger'>异常</button>";
+        });
+        $grid->cpu('CPU')->display(function($cpu){
+            return "<div class='progress'>
+            <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='{$cpu}' aria-valuemin='0' aria-valuemax='100' style='width: {$cpu}%;'>
+              {$cpu}%
+            </div>
+          </div>";
+        });
+        $grid->mem('内存')->display(function($mem){
+            return "<div class='progress'>
+            <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='{$mem}' aria-valuemin='0' aria-valuemax='100' style='width: {$mem}%;'>
+              {$mem}%
+            </div>
+          </div>"; 
+        });
         $grid->created_at('创建时间');
         $grid->updated_at('更新时间');
 
